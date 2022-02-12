@@ -11,6 +11,7 @@ type InstallValuesProps ={
     max: number
     error: boolean
     activateCounter: (value:boolean)=>void
+    display?: boolean
 }
 export const InstallValues = ({ setMaxMin, setMinLocal, setMaxLocal,max, min, activateCounter,...props}:InstallValuesProps) => {
 
@@ -33,9 +34,10 @@ export const InstallValues = ({ setMaxMin, setMinLocal, setMaxLocal,max, min, ac
         setAble(true);
         activateCounter(false)
     };
+    const styleContainer= props.display ? s.displayNone : s.containerInstall
 
     return (
-        <div className={s.container}>
+        <div className={styleContainer}>
             <div className={s.containerValues}>
                 <div>Min Value:  <Input  type={"number"} value={min} callback={onChangeMin} className={min<0 ? `${s.error}` : ''}/></div>
                 <div>Max Value: <Input  type={"number"} value={max} callback={onChangeMax} className={max<0 ? `${s.error}` : ''}/></div>

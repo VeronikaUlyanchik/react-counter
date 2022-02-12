@@ -1,4 +1,4 @@
-.container {
+.container, .containerInstall {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -13,6 +13,9 @@
     background-color: floralwhite;
     color: #61dafb;
     border-radius: 20px;
+}
+.displayNone{
+    display: none;
 }
 button{
     width: 100px;
