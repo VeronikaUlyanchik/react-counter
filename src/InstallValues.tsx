@@ -12,26 +12,27 @@ type InstallValuesProps ={
     error: boolean
     activateCounter: (value:boolean)=>void
     display?: boolean
+    disable?: boolean
+    setAble?:(value:boolean)=> void
 }
 export const InstallValues = ({ setMaxMin, setMinLocal, setMaxLocal,max, min, activateCounter,...props}:InstallValuesProps) => {
 
-    let [disable, setAble] = useState(false);
 
     const onChangeMax = (event:ChangeEvent<HTMLInputElement>)=>{
-        setAble(false);
+        props.setAble && props.setAble(false);
        let num = +event.currentTarget.value;
         setMaxLocal(num);
         activateCounter(true);
     };
     const onChangeMin = (event:ChangeEvent<HTMLInputElement>)=>{
         let num = +event.currentTarget.value;
-        setAble(false);
+        props.setAble && props.setAble(false);
         activateCounter(true);
         setMinLocal(num);
     };
     const setMaxMinHandler=()=>{
         setMaxMin(min,max);
-        setAble(true);
+        props.setAble && props.setAble(true);
         activateCounter(false)
     };
     const styleContainer= props.display ? s.displayNone : s.containerInstall
@@ -39,10 +40,10 @@ export const InstallValues = ({ setMaxMin, setMinLocal, setMaxLocal,max, min, ac
     return (
         <div className={styleContainer}>
             <div className={s.containerValues}>
-                <div>Min Value:  <Input  type={"number"} value={min} callback={onChangeMin} className={min<0 ? `${s.error}` : ''}/></div>
-                <div>Max Value: <Input  type={"number"} value={max} callback={onChangeMax} className={max<0 ? `${s.error}` : ''}/></div>
+                <div>Min Value: <Input  type={"number"} value={min} callback={onChangeMin} className={props.error ? `${s.error}` : ''}/></div>
+                <div>Max Value: <Input  type={"number"} value={max} callback={onChangeMax} className={props.error ? `${s.error}` : ''}/></div>
             </div>
-            <Button name={"Set"} callback={setMaxMinHandler} disabled={props.error || disable}/>
+            <Button name={"Set"} callback={setMaxMinHandler} disabled={props.error || props.disable}/>
         </div>
     )
 };

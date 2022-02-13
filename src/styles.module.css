@@ -58,7 +58,8 @@ button:disabled{
 }
 .error {
     border: 3px solid red;
-    color: red;
+    color: #830303;
+    background: #cb7e7e;
 }
 .errorText {
     font-size: 20px;

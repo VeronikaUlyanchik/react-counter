@@ -24,7 +24,7 @@ export const Counter = ({count, incCount, resetCount , startValue, maxValue,disa
             <div>
                 <Button name={'inc'} callback={incCount} disabled={count === maxValue || disabled}/>
                 <Button name={'reset'} callback={resetCount} disabled={count === startValue || disabled}/>
-                {props.settings && props.onClickSettings && <Button name={'settings'} callback={props.onClickSettings} disabled={false}/>}
+                {props.settings && props.onClickSettings && <Button name={'set'} callback={props.onClickSettings} disabled={false}/>}
             </div>
 
         </div>
